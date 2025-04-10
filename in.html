@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กรอกข้อมูลและแสดงรายชื่อ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Sarabun', sans-serif;
+        }
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        input[type="text"], input[type="url"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #10b981;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #059669;
+        }
+        p {
+            font-size: 1rem;
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+        }
+        .container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .name-list {
+            margin-top: 20px;
+        }
+        .name-list ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .name-list li {
+            padding: 8px;
+            background-color: #e0f7fa;
+            margin-bottom: 8px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>กรอกข้อมูลและแสดงรายชื่อ</h1>
+        <form id="myForm">
+            <input type="text" id="name" placeholder="ชื่อของคุณ" required>
+            <input type="url" id="facebookLink" placeholder="ใส่ลิงก์เฟสบุ๊คของคุณ" required>
+            <button type="submit">เพิ่มข้อมูล</button>
+        </form>
+
+        <div class="name-list">
+            <h2>รายชื่อที่กรอกแล้ว:</h2>
+            <ul id="nameList"></ul>
+        </div>
+    </div>
+
+    <script>
+        const nameList = document.getElementById('nameList');
+
+        document.getElementById('myForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const facebookLink = document.getElementById('facebookLink').value;
+
+            if (name && facebookLink) {
+                const listItem = document.createElement('li');
+                listItem.textContent = `ชื่อ: ${name} | ลิงก์เฟสบุ๊ค: ${facebookLink}`;
+                nameList.appendChild(listItem);
+
+                // Clear the form inputs
+                document.getElementById('name').value = '';
+                document.getElementById('facebookLink').value = '';
+            } else {
+                alert("กรุณากรอกข้อมูลให้ครบ!");
+            }
+        });
+    </script>
+</body>
+</html>
